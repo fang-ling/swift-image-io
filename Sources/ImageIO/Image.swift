@@ -26,6 +26,12 @@ public struct Image {
    * The height of a bitmap image, in pixels.
    */
   public var height: Int
+
+  public init(pixelBuffer: [UInt16], width: Int, height: Int) {
+    self.pixelBuffer = pixelBuffer
+    self.width = width
+    self.height = height
+  }
 }
 
 /*===----------------------------------------------------------------------===*/
