@@ -13,7 +13,7 @@ import Foundation
 /**
  * An object that encodes data as images.
  */
-struct ImageEncoder: Sendable {
+public struct ImageEncoder: Sendable {
   private init() { }
 }
 
@@ -21,7 +21,7 @@ extension ImageEncoder {
   /**
    * The shared image encoder object for the process.
    */
-  static let `default` = ImageEncoder()
+  public static let `default` = ImageEncoder()
 }
 
 extension ImageEncoder {
@@ -34,7 +34,7 @@ extension ImageEncoder {
    *
    * - Returns: The encoded image data.
    */
-  func encode(image: Image, to format: Format) throws -> Data {
+  public func encode(image: Image, to format: Format) throws -> Data {
     switch format {
     case .png:
       fatalError("Not supported yet.")
