@@ -11,7 +11,28 @@
 @testable import ImageIO
 import Testing
 
-@Test func test() async throws { }
+struct ImageEncoderTests {
+  @Test func testLosslessEncoding() async throws {
+    let image = Image(
+      pixelBuffer: (
+        [UInt16](repeating: 19348, count: 1280 * 720) +
+        [UInt16](repeating: 12361, count: 1280 * 720) +
+        [UInt16](repeating: 19358, count: 1280 * 720) +
+        [UInt16](repeating: 12333, count: 1280 * 720)
+      ),
+      width: 1280,
+      height: 720
+    )
+
+    let jxlData = try ImageEncoder.default.encode(image: image, to: .jpegxl)
+    let decodedImage = try ImageDecoder.default.decode(
+      from: jxlData,
+      with: .jpegxl
+    )
+
+    #expect(decodedImage == image)
+  }
+}
 
 /*===----------------------------------------------------------------------===*/
 /*     ______                                       ______   _____            */
